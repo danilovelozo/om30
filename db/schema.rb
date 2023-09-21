@@ -21,6 +21,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_17_205737) do
     t.string "neighborhood"
     t.string "city"
     t.string "state"
+    t.string "complement"
     t.string "ibge"
     t.bigint "municipe_id", null: false
     t.datetime "created_at", null: false

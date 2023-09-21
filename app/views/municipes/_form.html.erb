@@ -1,0 +1,147 @@
+<%= form_for @municipe do |f|  %>
+
+<% if f.object.errors.any? %>
+<ul style="list-style-type: none;">
+  <% f.object.errors.full_messages.each do |message| %>
+  <li>
+    <div class="alert border-danger alert-dismissible fade show" role="alert">
+      <span style="color: red;">*</span>&nbsp;<%= message.html_safe %>
+    </div>
+  </li>
+  <% end %>
+</ul>
+<% end %>
+
+  <p class="break-words">&nbsp;</p>
+  <div class="grid md:grid-cols-2 md:gap-6">
+    <div class="relative z-0 w-full mb-6 group">
+      <%= f.text_field :full_name, class: "block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer text-lg", required: true %>
+
+      <label class="peer-focus:font-medium absolute text-lg text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 text-lg">Nome Completo</label>
+    </div>
+    <div class="relative z-0 w-full mb-6 group">
+      <%= f.text_field :cpf, class: "block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-dark dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer text-lg", required: true %>
+
+      <label class="peer-focus:font-medium absolute text-lg text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 text-lg">CPF</label>
+    </div>
+  </div>
+
+  <div class="grid md:grid-cols-2 md:gap-6">
+    <div class="relative z-0 w-full mb-6 group">
+      <%= f.text_field :cns, class: "block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-dark dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer text-lg", required: true %>
+
+      <label class="peer-focus:font-medium absolute text-lg text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 text-lg">CNS</label>
+    </div>
+    <div class="relative z-0 w-full mb-6 group">
+      <%= f.email_field :email, class: "block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-dark dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer", required: true %>
+
+      <label class="peer-focus:font-medium absolute text-lg text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 text-lg">Email</label>
+    </div>
+  </div>
+
+  <div class="grid md:grid-cols-3 md:gap-6">
+    <div class="relative z-0 w-full mb-4 group">
+      <%= f.text_field :birthdate, class: "block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-dark dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer", required: true %>
+
+      <label class="peer-focus:font-medium absolute text-lg text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 text-lg">Data de Nascimento</label>
+    </div>
+    <div class="relative z-0 w-full mb-4 group">
+      <label class="peer-focus:font-medium absolute text-lg text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 text-lg">Status</label>
+
+      <p class="break-words">&nbsp;</p>
+
+      <%= f.select(:status, options_for_select([["Ativo", true], ["Inativo", false]], selected: f.object.status), {include_blank: "Selecionar"}, {class: "border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 text-lg"}) %>
+    </div>
+
+    <div class="relative z-0 w-full mb-4 group">
+      <%= f.text_field :phone, class: "block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer text-lg", required: true %>
+
+      <label class="peer-focus:font-medium absolute text-lg text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 text-lg">Telefone</label>
+    </div>
+  </div>
+
+  <p class="break-words">&nbsp;</p>
+
+  <div class="h-screen w-full relative justify-center items-center">
+    <div class="w-full grid place-items-center w-100 h-2">
+
+      <caption class="caption-top">
+        <p class="break-words font-bold text-2xl">Cadastrar Endereço</p>
+      </caption>
+
+    </div>
+
+  <p class="break-words">&nbsp;</p>
+  <p class="break-words">&nbsp;</p>
+
+  <%= f.fields_for :address do |a| %>
+
+  <div class="grid md:grid-cols-2 md:gap-6">
+    <div class="relative z-0 w-full mb-6 group">
+      <%= a.text_field :zipcode, class: "block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer text-lg", required: true %>
+
+      <label class="peer-focus:font-medium absolute text-lg text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 text-lg">CEP</label>
+    </div>
+    <div class="relative z-0 w-full mb-6 group">
+      <%= a.text_field :street_name, class: "block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-dark dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer text-lg", required: true %>
+
+      <label class="peer-focus:font-medium absolute text-lg text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 text-lg">Endereço</label>
+    </div>
+  </div>
+
+  <div class="grid md:grid-cols-3 md:gap-6">
+    <div class="relative z-0 w-full mb-4 group">
+      <%= a.text_field :number, class: "block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer text-lg", required: true %>
+
+      <label class="peer-focus:font-medium absolute text-lg text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 text-lg">Número</label>
+    </div>
+    <div class="relative z-0 w-full mb-4 group">
+      <%= a.text_field :neighborhood, class: "block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-dark dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer text-lg", required: true %>
+
+      <label class="peer-focus:font-medium absolute text-lg text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 text-lg">Bairro</label>
+    </div>
+
+    <div class="relative z-0 w-full mb-4 group">
+      <%= a.text_field :complement, class: "block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-dark dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer text-lg", required: true %>
+
+      <label class="peer-focus:font-medium absolute text-lg text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 text-lg">Complemento</label>
+    </div>
+  </div>
+
+  <div class="grid md:grid-cols-3 md:gap-6">
+    <div class="relative z-0 w-full mb-4 group">
+      <%= a.text_field :city, class: "block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer text-lg", required: true %>
+
+      <label class="peer-focus:font-medium absolute text-lg text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 text-lg">Cidade</label>
+    </div>
+    <div class="relative z-0 w-full mb-4 group">
+      <%= a.text_field :state, class: "block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-dark dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer text-lg", required: true %>
+
+      <label class="peer-focus:font-medium absolute text-lg text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 text-lg">Estado</label>
+    </div>
+
+    <div class="relative z-0 w-full mb-4 group">
+      <%= a.text_field :ibge, class: "block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-dark dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer text-lg", required: true %>
+
+      <label class="peer-focus:font-medium absolute text-lg text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 text-lg">IBGE</label>
+    </div>
+  </div>
+
+  <% end %>
+
+  <div class="flex items-center justify-center" role="group">
+
+  <%= link_to municipes_path, method: :get, class: "inline-flex px-4 text-white bg-stone-950 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-stone-950 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-right dark:bg-stone-950 dark:hover:bg-stone-950 dark:focus:ring-blue-800" do %>
+    <b>Voltar</b>
+  <% end %>
+
+  <p class="break-words">&nbsp;</p>
+
+  <%= f.button nil, class: "inline-flex items-center text-white bg-rose-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-rose-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-right dark:bg-rose-600 dark:hover:bg-rose-700 dark:focus:ring-rose-800" do %>
+    <b>Salvar</b>
+  <% end %>
+
+  <% end %>
+
+</div>
+

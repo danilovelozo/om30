@@ -1,36 +1,61 @@
 
 <table class="w-full table-auto">
-  <caption class="caption-top">
-    <a href="#" class="p-2 lg:px-4 md:mx-2 text-white rounded bg-rose-600 space-y-4">Novo Usuário</a>
-    <p class="break-words">&nbsp;</p>
-  </caption>
+
+    <caption class="caption-top">
+        <%= render "shared/flash" %>
+        <p class="break-words">&nbsp;</p>
+    </caption>
+
+
+    <caption class="caption-top">
+        <%= link_to new_municipe_path, class: "p-2 lg:px-4 md:mx-2 text-white rounded bg-rose-600 space-y-4", method: :get do %>
+            Novo Cadastro
+        <% end %>
+
+        <p class="break-words">&nbsp;</p>
+    </caption>
 
   <hr class="flex-grow">
 
       <thead>
           <tr class="bg-gray-100">
-              <th class="w-1/4 py-4 px-6 text-center text-gray-600 font-bold uppercase">Nome</th>
+              <th class="w-1/4 py-4 px-6 text-center text-gray-600 font-bold uppercase">Nome Completo</th>
               <th class="w-1/4 py-4 px-6 text-center text-gray-600 font-bold uppercase">CPF</th>
               <th class="w-1/4 py-4 px-6 text-center text-gray-600 font-bold uppercase">CNS</th>
               <th class="w-1/4 py-4 px-6 text-center text-gray-600 font-bold uppercase">Email</th>
-              <th class="w-2/4 py-4 px-6 text-center text-gray-600 font-bold uppercase">Data de Nascimento</th>
+              <th class="w-2/4 p-2 px-0 text-center text-gray-600 font-bold uppercase truncate">Data de Nascimento</th>
               <th class="w-1/4 py-4 px-6 text-center text-gray-600 font-bold uppercase">Telefone</th>
               <th class="w-1/4 py-4 px-6 text-center text-gray-600 font-bold uppercase">Status</th>
+              <th class="w-1/4 py-4 px-6 text-center text-gray-600 font-bold uppercase">Ações</th>
           </tr>
       </thead>
       <tbody class="bg-white">
+        <% @municipes.each do |municipe| %>
           <tr>
-              <td class="py-4 px-6 border-b text-center border-gray-200">Danilo Velozo</td>
-              <td class="py-4 px-6 border-b text-center border-gray-200 truncate">351.125.978-95</td>
-              <td class="py-4 px-6 border-b text-center border-gray-200">123456</td>
-              <td class="py-4 px-6 border-b text-center border-gray-200">velozo.dan@gmail.com</td>
-              <td class="py-4 px-6 border-b text-center border-gray-200">22/04/1991</td>
-              <td class="py-4 px-6 border-b text-center border-gray-200">(11) 9 7757-5618</td>
+              <td class="py-4 px-6 border-b text-center border-gray-200"><%= municipe.full_name %></td>
+              <td class="py-4 px-6 border-b text-center border-gray-200 truncate"><%= municipe.cpf %></td>
+              <td class="py-4 px-6 border-b text-center border-gray-200 truncate"><%= municipe.cns %></td>
+              <td class="py-4 px-6 border-b text-center border-gray-200 truncate"><%= municipe.email %></td>
+              <td class="py-4 px-10 border-b text-center border-gray-200"><%= municipe.birthdate %></td>
+              <td class="p-2 px-0 border-b text-center border-gray-200"><%= municipe.phone %></td>
+
+              <% if municipe.status == true %>
               <td class="py-4 px-6 border-b text-center border-gray-200">
-                  <span class="bg-green-500 text-white py-1 px-2 rounded-full text-xs">Ativo</span>
+                <span class="bg-green-500 text-white py-1 px-2 rounded-full text-xs">Ativo</span>
+              </td>
+              <% else %>
+              <td class="py-4 px-6 border-b text-center border-gray-200">
+                <span class="bg-rose-500 text-white py-1 px-2 rounded-full text-xs">Inativo</span>
+              </td>
+              <% end %>
+
+              <td class="px-6 py-4 truncate">
+                <%= link_to edit_municipe_path(municipe.id), class: "font-medium text-blue-600 dark:text-blue-500 hover:underline", method: :get do %>
+                  Editar
+                <% end %>
               </td>
           </tr>
-          <!-- Add more rows here -->
+        <% end %>
       </tbody>
   </table>
 </div>

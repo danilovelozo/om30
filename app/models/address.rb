@@ -1,5 +1,5 @@
 class Address < ApplicationRecord
   belongs_to :municipe
 
-  validates :full_name, :cpf, :cns, :email, :birthdate, :phone, :status, presence: true
+  validates :zipcode, :street_name, :number, :neighborhood, :city, :state, presence: true
 end
