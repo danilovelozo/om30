@@ -48,8 +48,8 @@
               <td class="py-4 px-6 border-b text-center border-gray-200 truncate"><%= municipe.cpf %></td>
               <td class="py-4 px-6 border-b text-center border-gray-200 truncate"><%= municipe.cns %></td>
               <td class="py-4 px-6 border-b text-center border-gray-200 truncate"><%= municipe.email %></td>
-              <td class="py-4 px-10 border-b text-center border-gray-200"><%= municipe.birthdate %></td>
-              <td class="p-2 px-0 border-b text-center border-gray-200"><%= municipe.phone %></td>
+              <td class="py-4 px-10 border-b text-center border-gray-200 truncate"><%= municipe.birthdate %></td>
+              <td class="p-2 px-0 border-b text-center border-gray-200 truncate"><%= municipe.phone %></td>
 
               <% if municipe.status == true %>
               <td class="py-4 px-6 border-b text-center border-gray-200">
@@ -61,17 +61,18 @@
               </td>
               <% end %>
 
-              <td class="px-6 py-4 truncate">
+              <td class="p-2 px-0 border-b text-center border-gray-200 truncate">
+                <% if municipe&.photo&.attached? %>
+                  <%= link_to 'Ver Foto', municipe.photo.url, target: "_blank" %>
+                <% end %>
+              </td>
+
+              <td class="p-2 px-0 border-b text-center border-gray-200 truncate">
                 <%= link_to edit_municipe_path(municipe.id), class: "font-medium text-blue-600 dark:text-blue-500 hover:underline", method: :get do %>
                   Editar
                 <% end %>
               </td>
 
-              <td class="px-6 py-4 truncate">
-                <% if municipe&.photo&.attached? %>
-                  <%= link_to 'Ver Foto', municipe.photo.url, target: "_blank" %>
-                <% end %>
-              </td>
           </tr>
         <% end %>
       </tbody>
