@@ -6,6 +6,17 @@
         <p class="break-words">&nbsp;</p>
     </caption>
 
+    <caption class="caption-top">
+      <div class="relative mr-6 my-2">
+        <%= form_tag(municipes_path, html: { class:"row g-3" }, method: :get) do %>
+          <%= text_field_tag(:search, params[:search], class: 'bg-purple-white shadow rounded border-0 p-3', placeholder: 'Buscar por Nome, Email ou CPF') %>
+          <div class="absolute pin-r pin-t mt-3 mr-4 text-purple-lighter">
+        <% end %>
+        </div>
+      </div>
+      <p class="break-words">&nbsp;</p>
+      <p class="break-words">&nbsp;</p>
+    </caption>
 
     <caption class="caption-top">
         <%= link_to new_municipe_path, class: "p-2 lg:px-4 md:mx-2 text-white rounded bg-rose-600 space-y-4", method: :get do %>
@@ -26,6 +37,7 @@
               <th class="w-2/4 p-2 px-0 text-center text-gray-600 font-bold uppercase truncate">Data de Nascimento</th>
               <th class="w-1/4 py-4 px-6 text-center text-gray-600 font-bold uppercase">Telefone</th>
               <th class="w-1/4 py-4 px-6 text-center text-gray-600 font-bold uppercase">Status</th>
+              <th class="w-1/4 py-4 px-6 text-center text-gray-600 font-bold uppercase">Foto</th>
               <th class="w-1/4 py-4 px-6 text-center text-gray-600 font-bold uppercase">Ações</th>
           </tr>
       </thead>
@@ -52,6 +64,12 @@
               <td class="px-6 py-4 truncate">
                 <%= link_to edit_municipe_path(municipe.id), class: "font-medium text-blue-600 dark:text-blue-500 hover:underline", method: :get do %>
                   Editar
+                <% end %>
+              </td>
+
+              <td class="px-6 py-4 truncate">
+                <% if municipe&.photo&.attached? %>
+                  <%= link_to 'Ver Foto', municipe.photo.url, target: "_blank" %>
                 <% end %>
               </td>
           </tr>

@@ -1,8 +1,12 @@
 class MunicipesController < ApplicationController
-  before_action :set_model, only: :edit
+  before_action :set_model, only: %i[edit update]
 
   def index
-    @municipes = model_class.all
+    if params[:search] && params[:search].length > 1
+      @municipes = model_class.search_by_municipe(params[:search])
+    else
+      @municipes = model_class.all.includes([:photo_attachment])
+    end
   end
 
   def new
@@ -39,6 +43,6 @@ class MunicipesController < ApplicationController
 
   def municipe_params
     params.require(:municipe).permit(
-      :full_name, :cpf, :cns, :email, :birthdate, :phone, :status, address_attributes: [:id, :zipcode, :street_name, :number, :neighborhood, :city, :state, :complement, :ibge, :_destroy])
+      :full_name, :cpf, :cns, :email, :birthdate, :phone, :photo, :status, address_attributes: [:id, :zipcode, :street_name, :number, :neighborhood, :city, :state, :complement, :ibge, :_destroy])
   end
 end
